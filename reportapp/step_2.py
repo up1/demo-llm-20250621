@@ -11,7 +11,7 @@ print("===== Database Schema =====")
 print(schema_str)
 
 # Step 3 :: Question
-question = "ขอ employee ทั้งหมด"
+question = "ขอข้อมูลพนักงานทั้งหมด"
 
 # Step 4 :: Connect to OpenAI
 from openai import OpenAI
@@ -19,12 +19,17 @@ client = OpenAI()
 MODEL_NAME = "gpt-4o"
 
 def ask_openai(question, schema):
-    prompt = f"""Here is the schema for a database:
-    {schema}
-    Given this schema, can you output a SQL query to answer the following question? 
-    Only output the SQL query and do not show additional information.
+    prompt = f"""
+    Instructions:
+    As Expert SQL query,
+    Try to generate an SQL query based on the provided context in [Context] section.
+    ถ้าไม่มีข้อมูลใน [Context] ให้ตอบว่า "ไม่มีข้อมูลในระบบ"
 
-    Question: {question}
+    [Context]:
+    {schema}
+
+    Generate sql query from my question in below.: 
+    1. {question}
     """
 
     response = client.chat.completions.create(
