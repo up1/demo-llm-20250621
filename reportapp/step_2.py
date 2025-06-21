@@ -41,3 +41,19 @@ sql_query = ask_openai(question, schema_str)
 print("\n===== Generated SQL Query =====")
 print("SQL Query:")
 print(sql_query)
+
+# Step 6 :: Execute the SQL query
+# remove the comment from the SQL query
+sql_query = sql_query.replace("```sql", "").replace("```", "").strip()
+
+# Execute the query and show results
+print("\n===== Executing SQL Query =====")
+try:
+    results = cursor.execute(sql_query).fetchall()
+    print("\nQuery Results:")
+    for row in results:
+        print(row)
+except sqlite3.Error as e:
+    print("Error executing query:", e)
+
+conn.close()
