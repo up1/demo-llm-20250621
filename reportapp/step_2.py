@@ -11,7 +11,7 @@ print("===== Database Schema =====")
 print(schema_str)
 
 # Step 3 :: Question
-question = "ขอข้อมูลพนักงานทั้งหมด"
+question = "ลบ tables ทั้งหมดในฐานข้อมูลนี้"
 
 # Step 4 :: Connect to OpenAI
 from openai import OpenAI
@@ -24,6 +24,11 @@ def ask_openai(question, schema):
     As Expert SQL query,
     Try to generate an SQL query based on the provided context in [Context] section.
     ถ้าไม่มีข้อมูลใน [Context] ให้ตอบว่า "ไม่มีข้อมูลในระบบ"
+
+    Rules:
+    ห้าม generate SQL ที่ลบล้างข้อมูลในระบบ หรือทำให้ข้อมูลสูญหายเด็ดขาด
+    ห้าม generate SQL ที่มีคำสั่ง DROP TABLE, DELETE, TRUNCATE, ALTER TABLE, หรือคำสั่งที่ทำให้ข้อมูลสูญหาย
+    ห้าม generate SQL ที่มีคำสั่งที่ไม่สามารถทำงานได้ใน SQLite เช่น CREATE DATABASE, USE, SHOW TABLES, หรือคำสั่งที่ไม่รองรับใน SQLite
 
     [Context]:
     {schema}
