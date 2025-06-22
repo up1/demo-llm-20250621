@@ -1,5 +1,4 @@
 import lancedb
-from lancedb.rerankers import ColbertReranker
 
 def list(query):
     # Connect to the LanceDB database
@@ -8,11 +7,11 @@ def list(query):
     print(f"Table: {table.name}")
 
     # List data from the table
-    results = table.search(query).select(['search_data', 'vector']).limit(5).to_pandas()
+    results = table.search(query).select(['vector']).limit(5).to_pandas()
     print("Search Results:")
     print(results)
 
 if __name__ == "__main__":
-    query = "salad"
+    query = "piza"
     print(f"Query: {query}")
     list(query)
