@@ -16,7 +16,7 @@ vectorstore = Chroma(
 )
 
 # 1. Define the retriever with k=1 (result = 1 document)
-retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
+retriever = vectorstore.as_retriever(search_kwargs={"k": 1})
 
 # 2. Define the RAG pipeline.
 # https://smith.langchain.com/hub/rlm/rag-prompt
