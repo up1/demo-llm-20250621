@@ -16,7 +16,7 @@ vectorstore = Chroma(
 )
 
 # 1. Define the retriever with k=1 (result = 1 document)
-retriever = vectorstore.as_retriever(search_kwargs={"k": 1})
+retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
 # 2. Define the RAG pipeline.
 # https://smith.langchain.com/hub/rlm/rag-prompt
@@ -30,7 +30,7 @@ Context: {context}
 Answer:
 """
 
-llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
+llm = ChatOpenAI(model_name="gpt-4.1", temperature=0)
 prompt = PromptTemplate.from_template(template=template)
 
 # Format the docs to be used in the prompt
@@ -49,4 +49,4 @@ rag_chain = (
 
 # 3. Run the pipeline
 result = rag_chain.invoke("RAG คืออะไร")
-print("Result:", result)
+print("\nResult:", result)
