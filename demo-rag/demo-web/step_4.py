@@ -16,7 +16,9 @@ vectorstore = Chroma(
 )
 
 # 1. Define the retriever with k=1 (result = 1 document)
-retriever = vectorstore.as_retriever(search_kwargs={"k": 1})
+retriever = vectorstore.as_retriever(
+    search_type="similarity_score_threshold",
+    search_kwargs={"k": 1, "score_threshold": 0.5})
 
 # 2. Define the RAG pipeline.
 # https://smith.langchain.com/hub/rlm/rag-prompt
@@ -48,5 +50,5 @@ rag_chain = (
 )
 
 # 3. Run the pipeline
-result = rag_chain.invoke("RAG คืออะไร")
+result = rag_chain.invoke("hello")
 print("\nResult:", result)
