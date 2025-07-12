@@ -14,4 +14,9 @@ loader = WebBaseLoader(
     ),
 )
 docs = loader.load()
+
+# Remove \n and \t from the text
+for doc in docs:
+    doc.page_content = doc.page_content.replace("\n", "").replace("\t", "")
+
 print(docs)
