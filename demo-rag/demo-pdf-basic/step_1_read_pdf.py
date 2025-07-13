@@ -13,5 +13,6 @@ def read_pdf(file_path):
 
 if __name__ == "__main__":
     texts = read_pdf("./data/microsoft_annual_report_2022.pdf")
-    print(texts[7])
+    print("Page count:", len(texts))
+    print(texts[-1])
     
