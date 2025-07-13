@@ -1,8 +1,11 @@
+import chromadb
+from chromadb.utils.embedding_functions import (
+    OpenAIEmbeddingFunction,
+    SentenceTransformerEmbeddingFunction,
+)
+
 from step_1_read_pdf import read_pdf
 from step_2_chunking import chunk_text
-
-import chromadb
-from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction, OpenAIEmbeddingFunction
 
 
 def save_to_vectordb(texts):
