@@ -13,8 +13,8 @@ def save_to_vectordb(texts):
     Save the embeddings and texts to a vector database.
     """
     # Create embeddings for the texts
-    # embedding_function = SentenceTransformerEmbeddingFunction()
-    embedding_function = OpenAIEmbeddingFunction()
+    embedding_function = SentenceTransformerEmbeddingFunction()
+    # embedding_function = OpenAIEmbeddingFunction()
 
     # Initialize the ChromaDB client
     client = chromadb.PersistentClient(path="./db")
