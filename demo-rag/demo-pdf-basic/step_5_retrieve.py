@@ -1,5 +1,5 @@
 import chromadb
-from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
+from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction, OpenAIEmbeddingFunction
 
 def retrieve_from_vectordb(query):
     """
@@ -10,7 +10,8 @@ def retrieve_from_vectordb(query):
         client = chromadb.PersistentClient(path="./db")
 
         # Get the collection
-        embedding_function = SentenceTransformerEmbeddingFunction()
+        # embedding_function = SentenceTransformerEmbeddingFunction()
+        embedding_function = OpenAIEmbeddingFunction()
         collection = client.get_collection("microsoft_annual_report_2022", embedding_function=embedding_function)
 
         # query with scores and sort by distance
