@@ -22,4 +22,19 @@ if __name__ == "__main__":
     # Print the first chunk
     print("First chunk:")
     print(chunk_texts[0])
+
+    # Add metadata to each chunk
+    chunked_with_metadata = [
+        {
+            "text": chunk,
+            "metadata": {
+                "source": "./data/microsoft_annual_report_2022.pdf",
+                "page": i + 1
+            }
+        }
+        for i, chunk in enumerate(chunk_texts)
+    ]
+    # Print the first chunk with metadata
+    print("\nFirst chunk with metadata:")
+    print(chunked_with_metadata[1])
     
